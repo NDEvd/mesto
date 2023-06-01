@@ -17,6 +17,6 @@
 }
 
 .elements__like:active {
-  background-image: url(../../../images/logo-like-black.png);
+  background-image: url(../../../images/logo-like-black.svg);
   opacity: 1;
 }

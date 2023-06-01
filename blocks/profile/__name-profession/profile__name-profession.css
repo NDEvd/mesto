@@ -1,6 +1,4 @@
 .profile__name-profession {
-  display: inline-block;
-  position: relative;
   max-width: 450px;
 }
 
@@ -12,6 +10,6 @@
 
 @media screen and (max-width: 500px) {
   .profile__name-profession {
-    max-width: 240px;
+    max-width: 230px;
   }
 }

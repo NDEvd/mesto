@@ -1,6 +1,5 @@
 .popup__save {
   width: 358px;
-  height: 50px;
   background: #000000;
   border-radius: 2px;
   font-family: 'Inter', Arial, sans-serif;
@@ -12,6 +11,7 @@
   color: #FFFFFF;
   cursor: pointer;
   margin-top: 30px;
+  padding: 11px;
 }
 
 .popup__save:hover {
@@ -22,7 +22,6 @@
 @media screen and (max-width: 800px) {
   .popup__save {
     width: 238px;
-    height: 46px;
     font-size: 14px;
     line-height: 17px;
     margin-top: 28px;
