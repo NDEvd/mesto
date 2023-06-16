@@ -43,7 +43,7 @@
   <div class="popup" id="popup-chage-button">
     <div class="popup__container">
       <h2 class="popup__label">Редактировать профиль</h2>
-      <form method="get" name="попап">
+      <form method="get" name="form-chage-button">
         <input class="popup__input" type="text" name="name" title="name" id="name" required>
         <input class="popup__input" type="text" name="profession" title="profession" id="profession" required>
         <button class="popup__save" type="submit" id="save">Сохранить</button>
@@ -54,15 +54,15 @@
   <div class="popup" id="popup-add-button">
     <div class="popup__container">
       <h2 class="popup__label">Новое место</h2>
-      <form method="get" name="попап">
-        <input class="popup__input popup__input_popup_add-button" type="text" name="title" title="title" id="title" required>
-        <input class="popup__input popup__input_popup_add-button" type="text" name="place" title="place" id="place" required>
+      <form method="get" name="form-add-button">
+        <input class="popup__input" type="text" name="title" title="title" id="title" required placeholder="Название">
+        <input class="popup__input" type="text" name="place" title="place" id="place" required placeholder="Ссылка на картинку">
         <button class="popup__save" type="submit" id="save-place">Сохранить</button>
       </form>
       <button class="popup__close-icon" type="button" title="close-icon"></button>
     </div>
   </div>
-  <div class="popup" id="popup-image">
+  <div class="popup popup_type_image" id="popup-image">
     <div class="popup__open-image">
       <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
       <p class="popup__image-title"></p>
