@@ -1,4 +1,4 @@
-.elements__like {
+.card-template__like {
   border: 0;
   padding: 0;
   /* padding-right: 3px; */
@@ -11,12 +11,12 @@
   cursor: pointer;
 }
 
-.elements__like:hover {
+.card-template__like:hover {
   opacity: .5;
   transition: opacity .3s linear;
 }
 
-.elements__like:active {
+.card-template__like:active {
   background-image: url(../../../images/logo-like-black.svg);
   opacity: 1;
 }

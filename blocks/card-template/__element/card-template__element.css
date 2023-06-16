@@ -1,6 +1,7 @@
-.elements__element {
+.card-template__element {
   background: #FFFFFF;
   border-radius: 10px;
   /* height: 361px; */
   box-sizing: border-box;
+  position: relative;
 }

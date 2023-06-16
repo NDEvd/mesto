@@ -1,0 +1,7 @@
+.popup__input_popup_add-button {
+  color: #C4C4C4;
+}
+
+.popup__input_popup_add-button:focus {
+  color: black;
+}
