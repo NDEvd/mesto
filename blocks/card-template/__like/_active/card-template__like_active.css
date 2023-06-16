@@ -1,8 +1,3 @@
 .card-template__like_active {
     background-image: url(../../../../images/logo-like-black.svg);
 }
-
-/* .elements__like_active:hover {
-  opacity: .5;
-  transition: opacity .3s linear;
-} 
