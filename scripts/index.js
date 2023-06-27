@@ -73,8 +73,8 @@ popupAddButton.querySelector('.popup__close-icon').addEventListener('click', () 
   closePopup (popupAddButton)
 });
 
-const formPopupProfile = popupChageButton.querySelector('.popup__forma');
-const formPopupPlace = popupAddButton.querySelector('.popup__forma');
+const formPopupProfile = popupChageButton.querySelector('.popup__form');
+const formPopupPlace = popupAddButton.querySelector('.popup__form');
 
 function handleFormSubmit (evt) {
   evt.preventDefault();
