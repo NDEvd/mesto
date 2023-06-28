@@ -47,9 +47,11 @@ function openPopup(popup) {
 }
 
 function handleProfilPopup () {
+  let event = new Event('input');
   openPopup(popupChageButton);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
+  inputName.dispatchEvent(event);
 }
 
 buttonChange.addEventListener('click', handleProfilPopup);
@@ -71,6 +73,24 @@ popupChageButton.querySelector('.popup__close-icon').addEventListener('click', (
 });
 popupAddButton.querySelector('.popup__close-icon').addEventListener('click', () => {
   closePopup (popupAddButton)
+});
+
+popupChageButton.addEventListener('click', closeOverlay);
+popupAddButton.addEventListener('click', closeOverlay);
+popupImage.addEventListener('click', closeOverlay);
+
+function closeOverlay(event) {
+  if (event.currentTarget === event.target) {
+    closePopup (event.currentTarget);
+}
+};
+
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode === 27) {
+    closePopup (popupChageButton);
+    closePopup (popupAddButton);
+    closePopup (popupImage);
+  }
 });
 
 const formPopupProfile = popupChageButton.querySelector('.popup__form');
