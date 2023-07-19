@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleImagePopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleImagePopup = handleImagePopup;
   }
 
   _getTemplate() {
@@ -15,33 +16,32 @@ export class Card {
     return cardTemplate;
   }
 
-  generateCard() {
-    this._element = this._getTemplate();
-
-    this._element.querySelector('.card-template__image').src = this._link;
-    this._element.querySelector('.card-template__title').textContent = this._name;
-    this._element.querySelector('.card-template__title').alt = this._name;
-
-    this._element.querySelector('.card-template__like').addEventListener('click', () => {
-      this._element.querySelector('.card-template__like').classList.toggle('card-template__like_active');
+  _setEventListenerCard() {
+    this._cardLike.addEventListener('click', () => {
+      this._cardLike.classList.toggle('card-template__like_active');
     });
-    
-    this._element.querySelector('.card-template__delete').addEventListener('click', () => {
+  
+    this._cardDelete.addEventListener('click', () => {
       this._element.remove();
     });
 
-    this._element.querySelector('.card-template__image').addEventListener('click', () => {
-      document.querySelector('.popup_type_image').classList.add('popup_opened');
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') { 
-          document.querySelector('.popup_type_image').classList.remove('popup_opened'); 
-        }
-      });
-      document.querySelector('.popup__image').src = this._link;
-      document.querySelector('.popup__image').alt = this._name;
-      document.querySelector('.popup__image-title').textContent = this._name;
+    this._cardImage.addEventListener('click', (evt) => {
+      this._handleImagePopup(evt);
     });
-    
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card-template__image');
+    this._cardTitle = this._element.querySelector('.card-template__title');
+    this._cardLike = this._element.querySelector('.card-template__like');
+    this._cardDelete = this._element.querySelector('.card-template__delete');
+
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._setEventListenerCard();
+           
     return this._element;
   }
 }

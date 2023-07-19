@@ -1,11 +1,14 @@
 import { Card } from './card.js';
-import { initialCards } from './Constants.js';
-import { FormValidator, config } from './FormValidator.js';
+import { initialCards, config } from './constants.js';
+import { FormValidator } from './FormValidator.js';
 
 const page = document.querySelector('.page');
 
 const popupChageProfile = page.querySelector('#popup-chage-button');
+const formChageProfile = page.querySelector('#form-chage-button');
 const popupAddCard = page.querySelector('#popup-add-button');
+const formAddCard = page.querySelector('#form-add-button');
+
 const popupImage = page.querySelector('#popup-image');
 
 const buttonChangeProfile = page.querySelector('.profile__change-button');
@@ -35,22 +38,12 @@ function closePopupByEsc(e) {
   } 
 }
 
-function resetErrorStyle (popup, firstInput, secondInput) {
-  const error = popup.querySelectorAll('.popup__error');
-  [...error].forEach((item) => {
-    item.textContent = '';
-  });
-  firstInput.classList.remove('popup__input_type_error');
-  secondInput.classList.remove('popup__input_type_error');
-}
-
 function handleProfilPopup () {
-  const event = new Event('input');
   openPopup(popupChageProfile);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
-  inputName.dispatchEvent(event);
-  resetErrorStyle (popupChageProfile, inputName, inputProfession);
+  formValidatorProfile.enabledButtonSave();
+  formValidatorProfile.resetErrorStyle(inputName, inputProfession);
 }
 
 buttonChangeProfile.addEventListener('click', handleProfilPopup);
@@ -60,7 +53,7 @@ function handleCardPopup () {
   inputTitle.value = '';
   inputPlace.value = '';
   formValidatorAddCard.disabledButtonSave();
-  resetErrorStyle (popupAddCard, inputTitle, inputPlace);
+  formValidatorAddCard.resetErrorStyle(inputTitle, inputPlace);
 }
 
 buttonAddCard.addEventListener('click', handleCardPopup);
@@ -71,6 +64,15 @@ popupChageProfile.querySelector('.popup__close-icon').addEventListener('click', 
 popupAddCard.querySelector('.popup__close-icon').addEventListener('click', () => {
   closePopup (popupAddCard)
 });
+
+function handleImagePopup (event) {
+  openPopup(popupImage);
+  const image = event.target.closest('.card-template__element');
+
+  document.querySelector('.popup__image').src = image.querySelector('.card-template__image').src;
+  document.querySelector('.popup__image').alt = image.querySelector('.card-template__title').textContent;
+  document.querySelector('.popup__image-title').textContent = image.querySelector('.card-template__title').textContent;
+}
 
 popupChageProfile.addEventListener('click', closeOverlay);
 popupAddCard.addEventListener('click', closeOverlay);
@@ -99,33 +101,36 @@ popupImage.querySelector('.popup__close-open-image').addEventListener('click', (
   closePopup (popupImage);
 });
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template');
+function createCard (data) {
+  const card = new Card(data, '#card-template', handleImagePopup);
   const cardElement = card.generateCard();
 
-  document.querySelector('.card-template').append(cardElement);
+  return cardElement;
+}
+
+initialCards.forEach((item) => {
+  const cardInital = createCard(item);
+  document.querySelector('.card-template').append(cardInital);
 });
  
 function handleSubmitAdd (evt) {
   evt.preventDefault();
   
-  const newCards = {
+  const newCardsFromInput = {
     name: inputTitle.value,
     link: inputPlace.value
   };
 
-  const card = new Card(newCards, '#card-template');
-  const cardElement = card.generateCard();
-
-  document.querySelector('.card-template').prepend(cardElement);
+  const cardNew = createCard(newCardsFromInput);
+  document.querySelector('.card-template').prepend(cardNew);
 
   closePopup (popupAddCard);
 }
 
 formPopupPlace.addEventListener('submit', handleSubmitAdd);
 
-const formValidatorProfile = new FormValidator(config, popupChageProfile);
+const formValidatorProfile = new FormValidator(config, formChageProfile);
 formValidatorProfile.enableValidation();
 
-const formValidatorAddCard = new FormValidator(config, popupAddCard);
+const formValidatorAddCard = new FormValidator(config, formAddCard);
 formValidatorAddCard.enableValidation();

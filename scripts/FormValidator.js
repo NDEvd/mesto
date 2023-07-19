@@ -5,11 +5,11 @@ export class FormValidator {
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
+    this._inputErrorSelector = config.inputErrorSelector;
 
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonSave = this._formElement.querySelector(this._submitButtonSelector);
-    this._formInputs = this._formElement.querySelector(this._formSelector);
   }
 
   _showError(inputElement, errorElement) {
@@ -37,7 +37,7 @@ export class FormValidator {
     this._buttonSave.classList.add(this._inactiveButtonClass);
   }
 
-  _enabledButtonSave() {
+  enabledButtonSave() {
     this._buttonSave.disabled = false;
     this._buttonSave.classList.remove(this._inactiveButtonClass);
   }
@@ -46,16 +46,25 @@ export class FormValidator {
     if (!isActive) {
       this.disabledButtonSave();
     } else {
-      this._enabledButtonSave();
+      this.enabledButtonSave();
     }
+  }
+  
+  resetErrorStyle (firstInput, secondInput) {
+    const error = this._formElement.querySelectorAll(this._inputErrorSelector);
+    [...error].forEach((item) => {
+      item.textContent = '';
+    });
+    firstInput.classList.remove(this._inputErrorClass);
+    secondInput.classList.remove(this._inputErrorClass);
   }
 
   _setEventListener() {
-    this.toggleButtonSaveStyle(this._formInputs.checkValidity());
+    this.toggleButtonSaveStyle(this._formElement.checkValidity());
     
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this.toggleButtonSaveStyle(this._formInputs.checkValidity());
+        this.toggleButtonSaveStyle(this._formElement.checkValidity());
         this._chekInputValidity(inputElement);
       });
     });
@@ -71,11 +80,3 @@ export class FormValidator {
     this._setEventListener();
   }
 }
-
-export const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_disabled',
-  inputErrorClass: 'popup__input_type_error'
-};
