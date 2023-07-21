@@ -43,7 +43,7 @@ function handleProfilPopup () {
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
   formValidatorProfile.enabledButtonSave();
-  formValidatorProfile.resetErrorStyle(inputName, inputProfession);
+  formValidatorProfile.resetErrorStyle();
 }
 
 buttonChangeProfile.addEventListener('click', handleProfilPopup);
@@ -53,7 +53,7 @@ function handleCardPopup () {
   inputTitle.value = '';
   inputPlace.value = '';
   formValidatorAddCard.disabledButtonSave();
-  formValidatorAddCard.resetErrorStyle(inputTitle, inputPlace);
+  formValidatorAddCard.resetErrorStyle();
 }
 
 buttonAddCard.addEventListener('click', handleCardPopup);
@@ -65,13 +65,12 @@ popupAddCard.querySelector('.popup__close-icon').addEventListener('click', () =>
   closePopup (popupAddCard)
 });
 
-function handleImagePopup (event) {
+function handleImagePopup (linkImage, titleImage) {
   openPopup(popupImage);
-  const image = event.target.closest('.card-template__element');
-
-  document.querySelector('.popup__image').src = image.querySelector('.card-template__image').src;
-  document.querySelector('.popup__image').alt = image.querySelector('.card-template__title').textContent;
-  document.querySelector('.popup__image-title').textContent = image.querySelector('.card-template__title').textContent;
+  
+  document.querySelector('.popup__image').src = linkImage;
+  document.querySelector('.popup__image').alt = titleImage;
+  document.querySelector('.popup__image-title').textContent = titleImage;
 }
 
 popupChageProfile.addEventListener('click', closeOverlay);

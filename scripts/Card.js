@@ -25,8 +25,8 @@ export class Card {
       this._element.remove();
     });
 
-    this._cardImage.addEventListener('click', (evt) => {
-      this._handleImagePopup(evt);
+    this._cardImage.addEventListener('click', () => {
+      this._handleImagePopup(this._link, this._name);
     });
   }
 

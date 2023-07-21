@@ -19,7 +19,7 @@ export class FormValidator {
 
   _hideError(inputElement, errorElement) {
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.textContent = inputElement.validationMessage;
+    errorElement.textContent = '';
   }
   
   _chekInputValidity(inputElement) {
@@ -50,14 +50,12 @@ export class FormValidator {
     }
   }
   
-  resetErrorStyle (firstInput, secondInput) {
-    const error = this._formElement.querySelectorAll(this._inputErrorSelector);
-    [...error].forEach((item) => {
-      item.textContent = '';
-    });
-    firstInput.classList.remove(this._inputErrorClass);
-    secondInput.classList.remove(this._inputErrorClass);
-  }
+  resetErrorStyle () {
+    this._inputList.forEach((inputElement) => {
+      const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+      this._hideError(inputElement, errorElement);
+  });
+}
 
   _setEventListener() {
     this.toggleButtonSaveStyle(this._formElement.checkValidity());
