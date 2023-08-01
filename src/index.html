@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Место Россия">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Место Россия">
   </header>
   <main>
     <section class="profile content">
-      <img class="profile__foto" src="./images/Avatar2.png" alt="фото">
+      <img class="profile__foto" src="<%=require('./images/Avatar2.png')%>" alt="фото">
       <div class="profile__info">
         <div class="profile__info-change-button">
           <div class="profile__name-profession">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="profile__change-button" type="button" title="change-button"><img class="profile__change-button-img" src="./images/profile-pensil.svg" alt="изменить"></button>
+          <button class="profile__change-button" type="button" title="change-button"><img class="profile__change-button-img" src="<%=require('./images/profile-pensil.svg')%>" alt="изменить"></button>
         </div>
         <button class="profile__add-button" type="button" title="add-button">+</button>
       </div>
@@ -50,7 +50,7 @@
         <span id="profession-error" class="popup__error popup__error_visible"></span>
         <button class="popup__save" type="submit" id="save-profile">Сохранить</button>
       </form>
-      <button class="popup__close-icon" type="button" title="close-icon"></button>
+      <button class="popup__close-icon" type="button" title="close-icon" id="close-icon"></button>
     </div>
   </div>
   <div class="popup" id="popup-add-button">
@@ -63,16 +63,16 @@
         <span id="place-error" class="popup__error popup__error_visible"></span>
         <button class="popup__save" type="submit" id="save-place">Создать</button>
       </form>
-      <button class="popup__close-icon" type="button" title="close-icon"></button>
+      <button class="popup__close-icon" type="button" title="close-icon" id="close-icon"></button>
     </div>
   </div>
   <div class="popup popup_type_image" id="popup-image">
     <div class="popup__open-image">
       <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
       <p class="popup__image-title"></p>
-      <button class="popup__close-open-image" type="button" title="close-icon"></button>
+      <button class="popup__close-open-image" type="button" title="close-icon" id="close-icon"></button>
     </div>
   </div>
-  <script src="./scripts/index.js" type='module'></script>
+  <!-- <script src="./pages/index.js" type='module'></script> -->
 </body>
 </html>

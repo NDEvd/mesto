@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
@@ -67,11 +67,11 @@ export class FormValidator {
       });
     });
 
-    this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      // if (!formElement.checkValidity()) return;
-      console.log("Форма отправлена!");
-    });
+    // this._formElement.addEventListener("submit", (evt) => {
+    //   evt.preventDefault();
+    //   // if (!formElement.checkValidity()) return;
+    //   console.log("Форма отправлена!");
+    // });
   }
 
   enableValidation() {
