@@ -16,5 +16,4 @@ export default class UserInfo {
     this._name.textContent = UserInfo.name;
     this._profession.textContent = UserInfo.profession;
   }
-
 }

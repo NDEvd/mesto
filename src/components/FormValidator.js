@@ -66,12 +66,6 @@ export default class FormValidator {
         this._chekInputValidity(inputElement);
       });
     });
-
-    // this._formElement.addEventListener("submit", (evt) => {
-    //   evt.preventDefault();
-    //   // if (!formElement.checkValidity()) return;
-    //   console.log("Форма отправлена!");
-    // });
   }
 
   enableValidation() {

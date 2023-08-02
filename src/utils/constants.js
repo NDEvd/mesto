@@ -33,3 +33,11 @@ export const config = {
   inputErrorSelector: '.popup__error',
   inputErrorClass: 'popup__input_type_error'
 };
+
+const page = document.querySelector('.page');
+export const formChageProfile = page.querySelector('#form-chage-button');
+export const formAddCard = page.querySelector('#form-add-button');
+export const inputName = page.querySelector('#name');
+export const inputProfession = page.querySelector('#profession');
+export const buttonChangeProfile = page.querySelector('.profile__change-button');
+export const buttonAddCard = page.querySelector('.profile__add-button');
