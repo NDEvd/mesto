@@ -16,13 +16,21 @@ export default class Card {
     return cardTemplate;
   }
 
+  _toggleLike(){
+    this._cardLike.classList.toggle('card-template__like_active');
+  }
+
+  _deleteCard(){
+    this._element.remove();
+  }
+
   _setEventListenerCard() {
     this._cardLike.addEventListener('click', () => {
-      this._cardLike.classList.toggle('card-template__like_active');
+      this._toggleLike();
     });
   
     this._cardDelete.addEventListener('click', () => {
-      this._element.remove();
+      this._deleteCard();
     });
 
     this._cardImage.addEventListener('click', () => {
