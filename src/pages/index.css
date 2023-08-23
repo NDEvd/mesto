@@ -23,7 +23,9 @@
 @import url(../blocks/card-template/__image/card-template__image.css);
 @import url(../blocks/card-template/__title-like/card-template__title-like.css);
 @import url(../blocks/card-template/__title/card-template__title.css);
+@import url(../blocks/card-template/__like-counter/card-template__like-counter.css);
 @import url(../blocks/card-template/__like/card-template__like.css);
+@import url(../blocks/card-template/__counter/card-template__counter.css);
 @import url(../blocks/card-template/__like/_active/card-template__like_active.css);
 @import url(../blocks/card-template/__delete/card-template__delete.css);
 
