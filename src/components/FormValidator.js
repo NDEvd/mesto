@@ -24,7 +24,7 @@ export default class FormValidator {
   
   _chekInputValidity(inputElement) {
     const resultInputValidity = inputElement.validity.valid;
-    const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     if (!resultInputValidity) {
       this._showError(inputElement, errorElement);
     } else {
@@ -52,7 +52,7 @@ export default class FormValidator {
   
   resetErrorStyle () {
     this._inputList.forEach((inputElement) => {
-      const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+      const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
       this._hideError(inputElement, errorElement);
   });
 }

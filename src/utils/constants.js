@@ -17,7 +17,7 @@ export const formAddCard = page.querySelector('#form-add-button');
 export const formChageAvatar = page.querySelector('#form-chage-avatar');
 
 export const inputName = page.querySelector('#name');
-export const inputProfession = page.querySelector('#profession');
+export const inputProfession = page.querySelector('#about');
 export const inputAvatar = page.querySelector('#avatar');
 
 export const buttonChangeProfile = page.querySelector('.profile__change-button');
