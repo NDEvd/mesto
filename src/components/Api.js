@@ -47,7 +47,6 @@ export default class Api {
       .then((res) => {
           return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
         })
-        
   }
 
   addNewCard(data) {
@@ -89,5 +88,20 @@ export default class Api {
       return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
     })
   }
+
+  saveAvatar(avatarLink) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': this._contentType
+      },
+      body: JSON.stringify(avatarLink)
+    })
+      .then((res) => {
+          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
+        })
+  }
+
 
 }
