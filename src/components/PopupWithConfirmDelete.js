@@ -3,10 +3,9 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirmDelete extends Popup {
   constructor(popupSelector, handleCardSubmit = null) {
     super(popupSelector);
-    this._popupElement = document.querySelector(popupSelector);
-    this._formElement = this._popupElement.querySelector('.popup__form');
-    this._handleCardSubmit = handleCardSubmit;
     
+    this._formElement = this.popup.querySelector('.popup__form');
+    this._handleCardSubmit = handleCardSubmit;
   }
 
   setActionSubmit(callback) {

@@ -4,8 +4,14 @@ export default class Api {
     this._headers = configApi.headers;
     this._authorization = configApi.headers.authorization;
     this._contentType = configApi.headers["content-type"];
-
   }
+
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+  } 
 
   getAllInfo() {
     return Promise.all([this.getProfile(), this.getInitialCards()])
@@ -18,9 +24,7 @@ export default class Api {
         'Content-Type': this._contentType
       }
     })
-      .then((res) => {
-          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData))
-        })
+      .then(this._getResponseData)
   }
 
   getProfile() {
@@ -30,9 +34,7 @@ export default class Api {
         'Content-Type': this._contentType
       }
     })
-      .then((res) => {
-          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-        })
+      .then(this._getResponseData)
   }
 
   saveProfile(data) {
@@ -44,9 +46,7 @@ export default class Api {
       },
       body: JSON.stringify(data)
     })
-      .then((res) => {
-          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-        })
+      .then(this._getResponseData)
   }
 
   addNewCard(data) {
@@ -58,9 +58,7 @@ export default class Api {
           },
           body: JSON.stringify(data)
         })
-          .then((res) => {
-              return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-            })
+          .then(this._getResponseData)
   }
 
   deleteCard(idCard) {
@@ -71,9 +69,7 @@ export default class Api {
         'Content-Type': this._contentType
       }
     })
-      .then((res) => {
-          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-        })
+      .then(this._getResponseData)
   }
 
   counteLike(idCard, isLiked) {
@@ -84,9 +80,7 @@ export default class Api {
         'Content-Type': this._contentType
       }
     })
-    .then((res) => {
-      return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-    })
+      .then(this._getResponseData)
   }
 
   saveAvatar(avatarLink) {
@@ -98,10 +92,6 @@ export default class Api {
       },
       body: JSON.stringify(avatarLink)
     })
-      .then((res) => {
-          return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
-        })
+      .then(this._getResponseData)
   }
-
-
 }

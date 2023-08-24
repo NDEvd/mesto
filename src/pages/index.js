@@ -9,7 +9,6 @@ import { config,
   formChageAvatar,
   inputName,
   inputProfession,
-  inputAvatar,
   buttonChangeProfile,
   buttonAddCard,
   buttonChangeAvatar,
@@ -44,9 +43,8 @@ buttonChangeProfile.addEventListener('click', () => {
 });
 
 buttonChangeAvatar.addEventListener('click', () => {
-  inputAvatar.value = userInfo.getUserInfo().avatar;
   popupChageAvatarInstance.openPopup();
-  formValidatorAvatar.enabledButtonSave();
+  formValidatorAvatar.disabledButtonSave();
   formValidatorAvatar.resetErrorStyle();
 });
 
@@ -90,17 +88,19 @@ const cardInital = new Section(
     const cardElementInital = createCard(item);
     cardInital.addItem(cardElementInital, 'append')}, '.card-template');
 
-function loadData(isLoading, popupElement) {
+function loadData(isLoading, popupElement, ButtonText) {
   const popupButton = popupElement.querySelector('.popup__save');
   if (isLoading) {
     popupButton.textContent = 'Сохранение...';
+} else {
+  popupButton.textContent = ButtonText;
 }
 }
 
 const popupAddCardInstance = new PopupWithForm({
   popupSelector: '#popup-add-button',
   handleFormSubmit: (data) => {
-    loadData(true, popupAddCard);
+    loadData(true, popupAddCard, 'Создать');
     api.addNewCard(data)
       .then(dataFromServer => {
         const newCard = createCard(dataFromServer);
@@ -108,7 +108,7 @@ const popupAddCardInstance = new PopupWithForm({
         popupAddCardInstance.closePopup();
       })
       .catch((err) => console.log(err))
-      .finally(() => loadData(false, popupAddCard))
+      .finally(() => loadData(false, popupAddCard, 'Создать'))
   }
 });
 popupAddCardInstance.setEventListeners();
@@ -116,14 +116,14 @@ popupAddCardInstance.setEventListeners();
 const popupChageProfileInstance = new PopupWithForm({
   popupSelector: '#popup-chage-button',
   handleFormSubmit: (dataNewProfile) => {
-    loadData(true, popupChageProfile);
+    loadData(true, popupChageProfile, 'Сохранить');
     api.saveProfile(dataNewProfile)
     .then(dataNewProfile => {
       userInfo.setUserInfo(dataNewProfile);
       popupChageProfileInstance.closePopup();
     })
     .catch((err) => console.log(err))
-    .finally(() => loadData(false, popupAddCard))
+    .finally(() => loadData(false, popupAddCard, 'Сохранить'))
     }
   });
 popupChageProfileInstance.setEventListeners();
@@ -131,7 +131,7 @@ popupChageProfileInstance.setEventListeners();
 const popupChageAvatarInstance = new PopupWithForm({
   popupSelector: '#popup-chage-avatar',
   handleFormSubmit: (avatarLinkFromForm) => {
-    loadData(true, popupChageAvatar);
+    loadData(true, popupChageAvatar, 'Сохранить');
     api.saveAvatar(avatarLinkFromForm)
       .then(userInfoFromServer => {
         console.log('аватар установлен');
@@ -139,10 +139,10 @@ const popupChageAvatarInstance = new PopupWithForm({
         popupChageAvatarInstance.closePopup();
       })
       .catch(err => console.log(err))
-      .finally(() => loadData(false, popupAddCard)) 
+      .finally(() => loadData(false, popupAddCard, 'Сохранить')) 
   }
 });
-  popupChageAvatarInstance.setEventListeners();
+popupChageAvatarInstance.setEventListeners();
 
 const popupConfirm = new PopupWithConfirmDelete('#popup-confirm-delete', null);
 function handleCardDelete(cardInstance) {
@@ -155,8 +155,8 @@ function handleCardDelete(cardInstance) {
         })
         .catch((err) => console.log(err))
       });
-  popupConfirm.setEventListeners();
 }
+popupConfirm.setEventListeners();
 
 const formValidatorProfile = new FormValidator(config, formChageProfile);
 formValidatorProfile.enableValidation();
